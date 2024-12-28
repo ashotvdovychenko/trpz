@@ -26,16 +26,15 @@ public class BuildService {
     private final OpenConnections connections;
     private final BuildRepository buildRepository;
     private final GitService gitService;
-    private final YamlWorkflowProcessor yamlWorkflowProcessor;
     private final DockerService dockerService;
+    private final YamlWorkflowProcessor yamlWorkflowProcessor = YamlWorkflowProcessor.getInstance();
 
     @Inject
     public BuildService(BuildRepository buildRepository, OpenConnections connections,
-                        GitService gitService, YamlWorkflowProcessor yamlWorkflowProcessor, DockerService dockerService) {
+                        GitService gitService, DockerService dockerService) {
         this.buildRepository = buildRepository;
         this.connections = connections;
         this.gitService = gitService;
-        this.yamlWorkflowProcessor = yamlWorkflowProcessor;
         this.dockerService = dockerService;
     }
 
