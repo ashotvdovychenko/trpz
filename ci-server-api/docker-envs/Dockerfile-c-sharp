@@ -1,0 +1,14 @@
+ARG C_SHARP_VERSION=7.0
+FROM mcr.microsoft.com/dotnet/sdk:$C_SHARP_VERSION
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    wget \
+    unzip \
+    tar \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+ENV PATH="$PATH:/root/.dotnet/tools"
+
+RUN wget https://github.com/dotnet/efcore/archive/refs/tags/v7.0.0.zip -P /tmp && \
+    unzip /tmp/v7.0.0.zip -d /opt && \
+    rm /tmp/v7.0.0.zip

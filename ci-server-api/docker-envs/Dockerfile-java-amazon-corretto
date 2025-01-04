@@ -1,0 +1,16 @@
+ARG JAVA_VERSION=21
+FROM amazoncorretto:$JAVA_VERSION
+
+RUN yum install -y wget unzip tar gzip
+
+RUN wget https://downloads.apache.org/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.tar.gz && \
+    tar -xzvf apache-maven-3.9.4-bin.tar.gz -C /opt && \
+    ln -s /opt/apache-maven-3.9.4 /opt/maven && \
+    ln -s /opt/maven/bin/mvn /usr/bin/mvn && \
+    rm apache-maven-3.9.4-bin.tar.gz
+
+RUN wget https://services.gradle.org/distributions/gradle-8.0.1-bin.zip -P /tmp && \
+    unzip /tmp/gradle-8.0.1-bin.zip -d /opt && \
+    ln -s /opt/gradle-8.0.1 /opt/gradle && \
+    ln -s /opt/gradle/bin/gradle /usr/bin/gradle && \
+    rm /tmp/gradle-8.0.1-bin.zip
