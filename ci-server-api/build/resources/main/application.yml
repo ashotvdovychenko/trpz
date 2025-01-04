@@ -1,0 +1,8 @@
+quarkus:
+  http:
+    cors: true
+'%dev':
+  quarkus:
+    http:
+      cors:
+        origins: '/.*/'
